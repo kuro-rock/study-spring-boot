@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/lp").permitAll()//ログインフォームは許可
+                .antMatchers("/lp").permitAll()//LPは許可
                 .anyRequest().authenticated();// それ以外は全て認証無しの場合アクセス不許可
         http.formLogin()
                 .defaultSuccessUrl("/logged_in");

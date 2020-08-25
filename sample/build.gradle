@@ -18,6 +18,22 @@ repositories {
 	mavenCentral()
 }
 
+// Copy the resources referred by the Doma annotation processors to
+// the destinationDir of the compileJava task
+task copyDomaResources(type: Sync)  {
+	from sourceSets.main.resources.srcDirs
+	into compileJava.destinationDir
+	include "doma.compile.config"
+	include "META-INF/**/*.sql"
+	include "META-INF/**/*.script"
+}
+
+compileJava {
+	// Depend on the above task
+	dependsOn copyDomaResources
+	options.encoding = "UTF-8"
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -32,6 +48,13 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	testImplementation 'org.springframework.security:spring-security-test'
+
+	annotationProcessor "org.seasar.doma.boot:doma-spring-boot-starter:1.1.1"
+	compile("org.seasar.doma.boot:doma-spring-boot-starter:1.1.1") {
+		exclude group: "org.springframework.boot"
+	}
+
+	compile 'org.apache.commons:commons-lang3'
 }
 
 test {

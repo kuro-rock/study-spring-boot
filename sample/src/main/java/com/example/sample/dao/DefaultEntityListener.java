@@ -1,6 +1,6 @@
 package com.example.sample.dao;
 
-import com.example.sample.util.ReflectionUtils;
+import com.example.sample.common.util.ReflectionUtils;
 import com.example.sample.dto.common.DomaDto;
 import com.example.sample.dto.common.Dto;
 import com.example.sample.exception.DoubleSubmitErrorException;
@@ -14,6 +14,7 @@ import org.seasar.doma.jdbc.entity.PreDeleteContext;
 import org.seasar.doma.jdbc.entity.PreInsertContext;
 import org.seasar.doma.jdbc.entity.PreUpdateContext;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -38,8 +39,11 @@ public class DefaultEntityListener<ENTITY> implements EntityListener<ENTITY> {
             val createdAt = AuditInfoHolder.getAuditDateTime();
             val createdBy = AuditInfoHolder.getAuditUser();
 
-            domaDto.setCreatedAt(createdAt); // 作成日
-            domaDto.setCreatedBy(createdBy); // 作成者
+//            domaDto.setCreatedAt(createdAt);
+//            domaDto.setCreatedBy(createdBy);
+            LocalDateTime ldt = LocalDateTime.now();
+            domaDto.setCreatedAt(ldt);
+            domaDto.setCreatedBy("Creator");
         }
     }
 

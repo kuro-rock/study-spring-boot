@@ -7,6 +7,8 @@ public interface WebConst {
 
     String MDC_FUNCTION_NAME = "FUNCTION_NAME";
 
+    String MAV_ERRORS = "errors";
+
     /** ---- URLs ---- **/
     String HOME_URL = "/";
 

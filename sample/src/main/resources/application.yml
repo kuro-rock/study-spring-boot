@@ -4,3 +4,7 @@ spring:
     username: root
     password: passw0rd
     driverClassName: com.mysql.cj.jdbc.Driver
+
+doma:
+  dialect: mysql
+  sql-file-repository: no_cache

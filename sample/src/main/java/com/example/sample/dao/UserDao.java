@@ -16,13 +16,9 @@ public interface UserDao {
 
     /**
      * ユーザーを取得します。
-     *
-     * @param criteria
-     * @param options
-     * @return
      */
-    @Select(strategy = SelectType.COLLECT)
-    <R> R selectAll(final UserCriteria criteria, final SelectOptions options, final Collector<User, ?, R> collector);
+    @Select
+    List<User> selectAll();
 
     /**
      * ユーザーを1件取得します。

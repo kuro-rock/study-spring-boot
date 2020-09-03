@@ -1,6 +1,7 @@
 package com.example.sample;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -56,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage(LOGIN_URL)//ログイン画面のURL
                 .failureUrl(LOGIN_FAILURE_URL)//認証失敗時のURL
                 .successForwardUrl(LOGIN_SUCCESS_URL)//認証成功時のURL
-                .usernameParameter("email")
+                .usernameParameter("loginId")
                 .passwordParameter("password");
     }
 

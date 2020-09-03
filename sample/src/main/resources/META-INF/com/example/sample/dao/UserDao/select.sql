@@ -3,17 +3,17 @@ SELECT
     ,name
     ,email
     ,password
-    ,created_by
-    ,created_at
-    ,updated_by
-    ,updated_at
-    ,deleted_by
-    ,deleted_at
+    ,createdBy
+    ,createdAt
+    ,updatedBy
+    ,updatedAt
+    ,deletedBy
+    ,deletedAt
     ,version
 FROM
     users
 WHERE
-    deleted_at IS NULL
+    deletedAt IS NULL
 /*%if criteria.id != null */
 AND user_id = /* criteria.id */1
 /*%end*/

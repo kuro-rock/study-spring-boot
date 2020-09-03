@@ -53,14 +53,30 @@ public class LoginController extends AbstractHtmlController {
         return "forward:" + LOGIN_PROCESSING_URL;
     }
 
+
     /**
      * ログイン成功
+     *
+     * @param form
+     * @param attributes
+     * @return
      */
-    @PostMapping("/success")
-    public String loginsuccess(@ModelAttribute LoginForm loginForm, Model model,RedirectAttributes redirectAttributes){
-        model.addAttribute("msg","loginSuccess");
-        return "/login/success";
+    @RequestMapping(LOGIN_SUCCESS_URL)
+    public String loginSuccess(@ModelAttribute LoginForm form, RedirectAttributes attributes) {
+//        attributes.addFlashAttribute("msg", getMessage("login.success"));
+        return "login/success";
     }
 
-
+    /**
+     * ログイン失敗
+     *
+     * @param form
+     * @param model
+     * @return
+     */
+    @RequestMapping(LOGIN_FAILURE_URL)
+    public String loginFailure(@ModelAttribute LoginForm form, Model model) {
+        model.addAttribute("msg", getMessage("login.failed"));
+        return "login/login";
+    }
 }

@@ -53,12 +53,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/create").permitAll()//test用機能※終わったら消す
                 .anyRequest().authenticated();// それ以外は全て認証無しの場合アクセス不許可
         http.formLogin()
+                .loginPage(LOGIN_URL).usernameParameter("loginId").passwordParameter("password")
                 .loginProcessingUrl(LOGIN_PROCESSING_URL)//ログイン処理をするURL
-                .loginPage(LOGIN_URL)//ログイン画面のURL
                 .failureUrl(LOGIN_FAILURE_URL)//認証失敗時のURL
-                .successForwardUrl(LOGIN_SUCCESS_URL)//認証成功時のURL
-                .usernameParameter("loginId")
-                .passwordParameter("password");
+                .successForwardUrl(LOGIN_SUCCESS_URL);
     }
 
 

@@ -16,7 +16,7 @@ public interface WebConst {
 
     String FORBIDDEN_URL = "/forbidden";
 
-    String LOGIN_URL = "/loginForm";
+    String LOGIN_URL = "/signin";
 
     String LOGIN_PROCESSING_URL = "/login";
 

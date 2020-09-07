@@ -1,0 +1,12 @@
+package com.example.sample.domain;
+
+import lombok.Data;
+
+@Data
+public class User {
+    private Long id;
+    private Long user_id;
+    private String name;
+    private String email;
+    private String password;
+}

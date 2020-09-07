@@ -2,11 +2,12 @@ package com.example.sample.security;
 
 import com.example.sample.dao.UserDao;
 import com.example.sample.dao.UserRoleDao;
-import com.example.sample.dto.user.User;
+import com.example.sample.domain.User;
 import com.example.sample.dto.user.UserCriteria;
 import com.example.sample.dto.user.UserRole;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import com.example.sample.mapper.UserMapper;
 import org.seasar.doma.jdbc.NoResultException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -30,7 +31,7 @@ import static java.util.stream.Collectors.toSet;
 public class UserDaoRealm extends BaseRealm {
 
     @Autowired
-    UserDao userDao;
+    UserMapper userMapper;
 
     @Autowired
     UserRoleDao userRoleDao;
@@ -42,12 +43,15 @@ public class UserDaoRealm extends BaseRealm {
 
         try {
             // login_idをメールアドレスと見立てる
-            val criteria = new UserCriteria();
-            criteria.setEmail(loginId);
+//            val criteria = new UserCriteria();
+//            criteria.setEmail(loginId);
+
+//            // ユーザーを取得して、セッションに保存する
+//            user = userDao.select(criteria)
+//                    .orElseThrow(() -> new UsernameNotFoundException("no user found. [id=" + loginId + "]"));
 
             // ユーザーを取得して、セッションに保存する
-            user = userDao.select(criteria)
-                    .orElseThrow(() -> new UsernameNotFoundException("no user found. [id=" + loginId + "]"));
+            user = userMapper.findOne(loginId);
 
             // 担当者権限を取得する
             List<UserRole> userRoles = userRoleDao.selectByUserId(user.getId(), toList());

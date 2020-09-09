@@ -51,7 +51,7 @@ public class UserDaoRealm extends BaseRealm {
 //                    .orElseThrow(() -> new UsernameNotFoundException("no user found. [id=" + loginId + "]"));
 
             // ユーザーを取得して、セッションに保存する
-            user = userMapper.findOne(loginId);
+            user = userMapper.findUserByEmail(loginId);
 
             // 担当者権限を取得する
             List<UserRole> userRoles = userRoleDao.selectByUserId(user.getId(), toList());
